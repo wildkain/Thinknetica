@@ -22,5 +22,8 @@ p "Exelent! So,  I need a little time to calculate ..."
 # Take 'height' parameter and calculate "ideal_weight" as 'height -110'
 ideal_weight = height - 110
 sleep(2)
-p ideal_weight
+
+#Inform user about they are ideal weight
+p "Congrats! Your ideal weight is equal to #{ideal_weight}kg! Good bye"
+
 

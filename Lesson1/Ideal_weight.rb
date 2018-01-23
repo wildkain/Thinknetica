@@ -24,6 +24,11 @@ ideal_weight = height - 110
 sleep(2)
 
 #Inform user about they are ideal weight
-p "Congrats! Your ideal weight is equal to #{ideal_weight}kg! Good bye"
+if ideal_weight>=0
+	p "Congrats, #{name}! Your ideal weight must be  equal to #{ideal_weight}kg! Good bye"
+else
+	p "WOW, #{name}! Your weight already ideal!"
+end
+
 
 

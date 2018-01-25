@@ -35,13 +35,13 @@ d = b**2 - (4 * a * c)
 
 # if discriminant is greater than 0  - two roots, if d < 0 - no roots. If d=0 - one root.
 if d > 0
-	sqrt = Math.sqrt(d) 
-	x1 = ( ( -b + sqrt ) / 2 * a).round(3)
-  	x2 = ( ( b + sqrt ) / 2 * a).round(3)
-	puts "Discriminant = #{d}. Root x1 = #{x1}. Root x2 = #{x2}"
+  sqrt = Math.sqrt(d) 
+  x1 = ( ( -b + sqrt ) / 2 * a).round(3)
+  x2 = ( ( b + sqrt ) / 2 * a).round(3)
+  puts "Discriminant = #{d}. Root x1 = #{x1}. Root x2 = #{x2}"
 elsif d = 0
-   	x = (-b / 2 * a)
-	puts "Discriminant = #{d}. Root x = #{x}"
+  x = (-b / 2 * a)
+  puts "Discriminant = #{d}. Root x = #{x}"
 else 
-	puts "Discriminant = #{d}. Корней нет"
+  puts "Discriminant = #{d}. Корней нет"
 end

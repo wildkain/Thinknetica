@@ -31,19 +31,15 @@ p "Fine. Tell me the THIRD parameter - third side"
 side_c = gets.chomp.to_f
 p "Ok, wait a little, please"
 
-# main logic to check triangle. Find hypotenuse(longest side) 
+# main logic to check sides of triangle. Find hypotenuse(longest side) 
 sides = [side_a, side_b, side_c]
 hypotenuse  = sides.max
 sides.delete(hypotenuse)
 cathetus1 = sides[0]
 cathetus2 = sides[1]
-
 sleep(2)
-#check type of triangle
-# First case - check Piphagor's theory
-# Second  - try to find equal sides(but not all)
-# Third   - try to compare all sides. Find all eaqual case
 
+#check type of triangle
 if hypotenuse**2 == cathetus1**2 + cathetus2**2
   message = "This is right triangle, Pifagor confirmed"
   message += " And this is isosceles triangle" if cathetus1 == cathetus2

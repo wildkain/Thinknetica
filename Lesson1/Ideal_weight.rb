@@ -15,7 +15,7 @@ name = gets.chomp
 p "Fine, #{name}. Now, I need to know your height in centimeters"
 
 #take user's input and save to variable, convert to int
-height = gets.chomp.to_i 
+height = gets.chomp.to_i
 
 p "Exelent! So,  I need a little time to calculate ..."
 
@@ -24,11 +24,8 @@ ideal_weight = height - 110
 sleep(2)
 
 #Inform user about they are ideal weight
-if ideal_weight>=0
-	p "Congrats, #{name}! Your ideal weight must be  equal to #{ideal_weight}kg! Good bye"
+if ideal_weight >= 0
+  p "Congrats, #{name}! Your ideal weight must be  equal to #{ideal_weight}kg! Good bye"
 else
-	p "WOW, #{name}! Your weight already ideal!"
+  p "WOW, #{name}! Your weight already ideal!"
 end
-
-
-

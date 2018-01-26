@@ -19,15 +19,15 @@ Math.sqrt(16)
 
 programm_name = 'Sqrt'
 p "Hello, my name is #{programm_name}. I help you to find your roots."
-p "Need only 3 coefficients for this. So tell me FIRST coefficient"
+p "Need only 3 coefficients for this. So tell me FIRST 'a' coefficient"
 
 # first coeff.
 a = gets.chomp.to_f
 
-p "Second..."
+p "Second  'b' ..."
 b = gets.chomp.to_f
 
-p "And THIRD"
+p "And THIRD 'c'"
 c = gets.chomp.to_f
 
 # Calculate discriminant
@@ -36,12 +36,13 @@ d = b**2 - (4 * a * c)
 # if discriminant is greater than 0  - two roots, if d < 0 - no roots. If d=0 - one root.
 if d > 0
   sqrt = Math.sqrt(d) 
-  x1 = ( ( -b + sqrt ) / 2 * a).round(3)
-  x2 = ( ( b + sqrt ) / 2 * a).round(3)
+  x1 = ( ( -b + sqrt ) / (2 * a)).round(3)
+  x2 = ( ( -b - sqrt ) / (2 * a)).round(3)
   puts "Discriminant = #{d}. Root x1 = #{x1}. Root x2 = #{x2}"
 elsif d = 0
-  x = (-b / 2 * a)
+  x = (-b / (2 * a))
   puts "Discriminant = #{d}. Root x = #{x}"
 else 
   puts "Discriminant = #{d}. Корней нет"
 end
+

@@ -38,14 +38,17 @@ sides.delete(hypotenuse)
 cathetus1 = sides[0]
 cathetus2 = sides[1]
 sleep(2)
-
+right= false
 #check type of triangle
 if hypotenuse**2 == cathetus1**2 + cathetus2**2
-  message = "This is right triangle, Pifagor confirmed"
-  message += " And this is isosceles triangle" if cathetus1 == cathetus2
-  puts message
-elsif sides.uniq.length == 1
+  p "This is right triangle, Pifagor confirmed"
+  right = true
+elsif [side_a, side_b, side_c].uniq.length == 1
   p "This is  equilateral triangle."	
 else
   p "Not a right triangle, sorry("
 end	
+
+if cathetus1 == cathetus2 && right == true
+  p "And this is isosceles triangle"
+end

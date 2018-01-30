@@ -6,7 +6,7 @@ arr = (10..100).step(5).to_a
 
 #populate with loop
 
-start, limit, step = 10, 100, 3
+start, limit, step = 10, 100, 5
 arr2 = []
 num = start - step
 

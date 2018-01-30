@@ -2,8 +2,8 @@
 # start fib
 fib = [0, 1, 1]
 
-while (i = fib[-1] + fib[-2]) < 100
-  fib.push(i)
+while (next = fib[-1] + fib[-2]) < 100
+  fib.push(next)
 end
 
 print fib

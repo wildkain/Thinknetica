@@ -16,13 +16,13 @@ loop do
   cost = gets.to_f
   print "Input amount: "
   amount = gets.to_f
-  cart[item] = {cost: cost, amount: amount, item_summ: cost * amount}
+  cart[item] = { cost: cost, amount: amount, item_summ: cost * amount }
 end
 
 puts "So, let see what is on your cart:"
-cart.each {|item_name, properties|
-puts "#{item_name}, cost per unit: #{properties[:cost]}, sub_total: #{properties[:item_summ]}"
-summ+=properties[:item_summ]
-}
+cart.each  do |item_name, properties|
+  puts "#{item_name}, cost per unit: #{properties[:cost]}, sub_total: #{properties[:item_summ]}"
+  summ += properties[:item_summ]
+end
 
 puts "Fine, total summ of all goods is: $#{summ} "

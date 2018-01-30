@@ -3,5 +3,5 @@
 alphabet = ('a'..'z').to_a
 letters={}
 #for each element in alphabet array
-alphabet.each_with_index{ |value, index| letters[value] = index+1 if %w( a e i o u y).include? value}
+alphabet.each_with_index{ |value, index| letters[value] = index + 1 if %w(a e i o u y).include? value }
 puts letters

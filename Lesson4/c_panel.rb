@@ -26,7 +26,7 @@ def menu
 		p "Enter '1' to  create a Station "
 		p "Enter '2' to  create a Train "
 		p "Enter '3' to  create a Route(need min 2 Stations) "
-		p "Enter '4' to  create Station "
+		p "Enter '4' to  edit a route"
 		p "Enter '5' to  create Station "
 		p "Enter '6' to  create Station "
 		p "Enter '7' to  create Station "
@@ -45,7 +45,7 @@ def menu_items(answer)
 	when 1 then create_station
 	when 2 then create_train
 	when 3 then create_route
-	when 4 then assign_route
+	when 4 then manage_routes
 	when 5 then add_wagon
 	when 6 then remove_wagon
 	when 7 then depart_train
@@ -93,11 +93,17 @@ def create_route
 	p "Your choise  -  #{last_station.name}"
     if first_station != last_station
     	@route = Route.new(first_station, last_station)
-		p "Route #{@route.stations} was created"
+    	@routes << @route
+		p "Route #{@route.print_list} was created"
 	else
 		p "Unable to create route. First point equal last"
 	end
 
+end
+
+def manage_routes
+	p "Choose route to edit"
+	@routes.each_with_index {|route, index| p "#{index}  - #{route.print_list}"}
 end
 
 def line

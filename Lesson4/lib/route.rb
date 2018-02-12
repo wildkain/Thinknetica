@@ -18,7 +18,12 @@ class Route
   end
 
   def print_list
-    @stations.each { |station| puts station.name }
+
+    num = 0
+    @stations.each do |station, num|
+      puts station.name
+      p num+=1
+    end
   end
 
 end

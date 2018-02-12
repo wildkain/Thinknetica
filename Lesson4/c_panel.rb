@@ -17,72 +17,100 @@ def initialize
 	@trains = []
 	@stations = []
 	@routes = []
-
+end
 def menu
 	p "Hello, Boss. What would you want?"
 	answer ||= nil
 	until answer == "exit" do
-		p "Enter SomeThing or input 'exit' "  
+		line
+		p "Enter '1' to  create a Station "
+		p "Enter '2' to  create a Train "
+		p "Enter '3' to  create a Route(need min 2 Stations) "
+		p "Enter '4' to  create Station "
+		p "Enter '5' to  create Station "
+		p "Enter '6' to  create Station "
+		p "Enter '7' to  create Station "
+		p "Enter '8' to  create Station "
+		p "Enter '9' to  create Station "
+		p "Enter '10' to  create Station "
+		line
 		answer  = gets.chomp.to_i
 		menu_items(answer)
 	end
-
-
-	#case answer
-	#when "me"
-	#	puts "#{self.class}"
-	#end
-
 end
 
 
 def menu_items(answer)
-	case answer 
-	when 1
-		p "More boobs!!!"
-	when 2
-		create_station
-	when 3
-		create_train
-	when 4
-	when 5
-	when 6
-	when 7	
+	case answer
+	when 1 then create_station
+	when 2 then create_train
+	when 3 then create_route
+	when 4 then assign_route
+	when 5 then add_wagon
+	when 6 then remove_wagon
+	when 7 then depart_train
+	when 8 then show_station
 	end
 end
 
 def create_station
 	p "Enter station name"
-	name = gets.chomp.capitalize!
-	@station = Station.new(name)
-	p "Station #{@station.name} was created"
-	@stations <<@station
+	name = gets.chomp
+	@stations << Station.new(name)
+	p "Station #{name} was created"
 end
+
 def create_train
 	p "Enter Trains number"
 	num= gets.chomp.to_i
 	p "Enter train's type. '1' - Passenger. '2' - Cargo"
 	type = gets.chomp.to_i
-	case type 
-	when 1
-		@train  = PassengerTrain.new(num)
-	when 2
-		@train = CargoTrain.new(num)
+	case type
+	when 1 then @train  = PassengerTrain.new(num)
+	when 2 then @train = CargoTrain.new(num)
 	else
 		p "Enter please only 1 or 2."
 	end
-	p "Train  #{@train.type} #{@train.number} was created"
+	p "Train  #{@train.type} #{@train.number} was created" if @train
 	@trains << @train
 end
 
 def create_route
 	# нужны 2 обьекта станции как минимум.
+	return if @stations.size < 2
 	p "Choose first point of route"
 	p "Aviable point based on your creations:"
+	show_created_stations
+	p "Plese, enter station's number"
+	first = gets.chomp.to_i
+	first_station = @stations[first - 1]
+	p "Your choise  -  #{first_station.name}"
+	p "Choose destination stattion"
+	show_created_stations
 
-	@stations. { |st| p "st.name  -" }
+	last = gets.chomp.to_i
+	last_station = @stations[last - 1]
+	p "Your choise  -  #{last_station.name}"
+    if first_station != last_station
+    	@route = Route.new(first_station, last_station)
+		p "Route #{@route.stations} was created"
+	else
+		p "Unable to create route. First point equal last"
+	end
 
-	
+end
+
+def line
+	p "_________________________________________"
+end
+
+
+
+private
+
+def show_created_stations
+  @stations.each.with_index(1) {|station, index| p "#{index} - #{station.name}"}
+end
 
 
 end

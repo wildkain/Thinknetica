@@ -19,10 +19,11 @@ class Route
 
   def print_list
 
-    num = 0
-    @stations.each do |station, num|
-      puts station.name
-      p num+=1
+
+    @stations.each_with_index do |station, index|
+
+      puts "#{index} -- #{station.name}"
+
     end
   end
 

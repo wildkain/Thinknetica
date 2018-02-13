@@ -22,7 +22,7 @@ def menu
 	p "Hello, Boss. What would you want?"
 	answer ||= nil
 	until answer == "exit" do
-		line
+		make_line
 		p "Enter '1' to  create a Station "
 		p "Enter '2' to  create a Train "
 		p "Enter '3' to  create a Route(need min 2 Stations) "
@@ -33,7 +33,7 @@ def menu
 		p "Enter '8' to  create Station "
 		p "Enter '9' to  create Station "
 		p "Enter '10' to  create Station "
-		line
+		make_line
 		answer  = gets.chomp.to_i
 		menu_items(answer)
 	end
@@ -44,12 +44,13 @@ def menu_items(answer)
 	case answer
 	when 1 then create_station
 	when 2 then create_train
-	when 3 then create_route
-	when 4 then manage_routes
-	when 5 then add_wagon
-	when 6 then remove_wagon
-	when 7 then depart_train
-	when 8 then show_station
+    when 3 then create_route
+    when 4 then manage_routes
+    when 5 then assign_route
+	when 6 then add_wagon
+	when 7 then remove_wagon
+	when 8 then depart_train
+	when 9 then show_station
 	end
 end
 
@@ -94,7 +95,7 @@ def create_route
     if first_station != last_station
     	@route = Route.new(first_station, last_station)
     	@routes << @route
-		p "Route #{@route.print_list} was created"
+		p "Route '#{first_station.name} => #{last_station.name}'  was created"
 	else
 		p "Unable to create route. First point equal last"
 	end
@@ -102,21 +103,65 @@ def create_route
 end
 
 def manage_routes
-	p "Choose route to edit"
-	@routes.each_with_index {|route, index| p "#{index}  - #{route.print_list}"}
+	p "Choose route to edit(add or delete stations)"
+	@routes.each_with_index do |route, index|
+		make_line("-r-")
+		p "Route - #{index}"
+		route.stations.each { |station| p "#{station.name}"}
+		make_line("-r-")
+  end
+
+  input = gets.chomp.to_i
+  route = @routes[input]
+  p "Route to edit - - #{route.stations.first.name} => #{route.stations.last.name}"
+  p "Enter 1 if you want to add station to route"
+  p "Enter 2 if you want to delete station"
+  case gets.chomp.to_i
+    when 1
+      p "Enter number of station"
+      show_created_stations
+      station = @stations[gets.chomp.to_i - 1]
+      route.add_to_list(station)
+    when 2    # тут баг, но я еще вернусь
+      p "Enter number of station"
+      route.print_list
+      station = @stations[gets.chomp.to_i]
+      p "Station #{station.name} was removed"
+      route.delete_station(station)
+  end
+
 end
 
-def line
-	p "_________________________________________"
+def assign_route
+    p "Look and choose train"
+    show_created_trains
+    train = @trains[gets.chomp.to_i - 1]
+    p "Look and choose route"
+    show_created_routes
+    route = @routes[gets.chomp.to_i - 1]
+    train.setup_route(route)
+    p "Route #{route} was assign to #{train}"
+
 end
 
 
 
 private
+  def show_created_routes
+    @routes.each.with_index(1) { |route, index| p "#{index} ---  #{route.stations.first.name} => #{route.stations.last.name}" }
+  end
+
+  def show_created_trains
+    @trains.each.with_index(1) { |train, index| p "#{index} - - #{train.number}"}
+  end
 
 def show_created_stations
   @stations.each.with_index(1) {|station, index| p "#{index} - #{station.name}"}
 end
 
+
+  def make_line(char="-")
+    p char * 30
+	end
 
 end

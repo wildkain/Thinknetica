@@ -28,4 +28,3 @@ class Route
   end
 
 end
-

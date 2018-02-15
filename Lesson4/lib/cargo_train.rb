@@ -1,6 +1,6 @@
-class CargoTrain < Train 
-	attr_reader :type
-	# child class of Train
+class CargoTrain < Train
+  attr_reader :type
+# child class of Train
 
 
 
@@ -17,10 +17,10 @@ class CargoTrain < Train
 
 
 	def move_backward
-		super
+	super
 	end
 
-  def setup_route(route)
+	def setup_route(route)
 		super
 		route.stations.first.trains << self
 	end
@@ -29,7 +29,7 @@ class CargoTrain < Train
 	def add_wagons(wagon)
 		return if !cargo_wagon?(wagon)
 		super
-	 end
+	end
 
 
 private

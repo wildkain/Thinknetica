@@ -209,7 +209,7 @@ class ControlPanel
     end
   end
 
-#список станций 
+#список станций
   def list_stations
     show_created_stations
   end
@@ -247,4 +247,3 @@ private
   end
 
 end
-

@@ -74,8 +74,8 @@ class Train
 
 # добавил проверку скорости
   def add_wagons(wagon)
-    if stay? 
-      @wagons << wagon 
+    if stay?
+      @wagons << wagon
     else
       p "Нельзя прицеплять вагоны на ходу. Сбросьте скорость"
     end
@@ -100,10 +100,5 @@ class Train
   def first_station?
     current_station == @route.stations.first
   end
-
-
-
-
-
 
 end

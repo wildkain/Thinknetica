@@ -5,20 +5,31 @@ class CargoTrain < Train
 
 
 
-def initialize(number)
-	super
-	@type = "CargoTrain"
-end
+	def initialize(number)
+		super
+		@type = "CargoTrain"
+	end
 
 
+	def move_forward
+		super
+	end
 
 
+	def move_backward
+		super
+	end
 
-def add_wagons(wagon)
+  def setup_route(route)
+		super
+		route.stations.first.trains << self
+	end
 
- 	return if !cargo_wagon?(wagon)
- 	super
- end
+
+	def add_wagons(wagon)
+		return if !cargo_wagon?(wagon)
+		super
+	 end
 
 
 private

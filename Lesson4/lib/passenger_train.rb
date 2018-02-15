@@ -7,15 +7,29 @@ class PassengerTrain < Train
  	@type  = "PassengerTrain"
  end
 
-def add_wagons(wagon)
-
- 	return if !passenger_wagon?(wagon)
- 	super
- end
+  def add_wagons(wagon)
+    return if !passenger_wagon?(wagon)
+    super
+   end
 
  def load_passengers
  end
- private
+
+  def move_forward
+   super
+  end
+
+
+  def move_backward
+    super
+  end
+
+  def setup_route(route)
+    super
+    route.stations.first.trains << self
+  end
+
+private
 
  def passenger_wagon?(wagon)
  	wagon.instance_of? PassengerWagon

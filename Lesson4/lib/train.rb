@@ -40,6 +40,7 @@ class Train
   def setup_route(route)
     @route = route
     @station_index = 0
+
   end
 
   #избавился от puts, проверка на маршрут
@@ -92,10 +93,6 @@ class Train
     @speed == 0
   end
 
-  private
-
-
-
   def last_station?
     current_station == @route.stations.last
   end
@@ -103,5 +100,10 @@ class Train
   def first_station?
     current_station == @route.stations.first
   end
+
+
+
+
+
 
 end

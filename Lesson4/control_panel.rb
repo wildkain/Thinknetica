@@ -35,6 +35,7 @@ class ControlPanel
       p "Enter '8' to  depart train from station"
       p "Enter '9' to  show list of stations "
       p "Enter '10' to  show list of trains on station "
+      p "Enter  '11' to show free wagons in depo"
       p "Enter '0 to go out"
       output_errors unless @errors.empty?
       @errors = []

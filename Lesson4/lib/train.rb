@@ -1,5 +1,5 @@
 class Train
-  attr_reader :number, :wagons
+  attr_reader :number, :wagons, :type , :current_station
   attr_accessor :route
 
   def initialize(number)
@@ -40,12 +40,12 @@ class Train
   def setup_route(route)
     @route = route
     @station_index = 0
-
+    route.stations.first.trains << self
   end
 
   #избавился от puts, проверка на маршрут
   def current_station
-   @current_station = @route.stations[@station_index] if @route
+   @current_station = @route.stations[@station_index]
   end
 
   def last_station
@@ -59,17 +59,17 @@ class Train
 # добавил проверку на нахождение на конечной. изменил прибытие - убытие со станции.
   def move_forward
     return if last_station?
-    @current_station.train_out(self)
-    @station_index += 1 if @station_index
-    @route.stations[@station_index].take_train(self)
+    current_station.train_out(self)
+    @station_index += 1
+    current_station.take_train(self)
   end
 
 # добавил проверку на нахождение на начальной станции. изменил прибытие - убытие со станции.
   def move_backward
     return if first_station?
-    @current_station.train_out(self)
+    current_station.train_out(self)
     @station_index -= 1 if @station_index
-    @route.stations[@station_index].take_train(self)
+    current_station.take_train(self)
   end
 
 # добавил проверку скорости

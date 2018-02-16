@@ -31,7 +31,7 @@ class Station
   end
 # удаляем поезд из массива @trains инстанса
   def train_out(train)
-    trains.delete(train)
+    @trains.delete(train)
   end
 end
 

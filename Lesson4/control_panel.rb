@@ -10,11 +10,14 @@ require_relative "lib/cargo_wagon.rb"
 
 class ControlPanel
   attr_accessor :station, :trains, :routes
+  attr_reader :wagons
 
   def initialize
     @trains = []
     @stations = []
     @routes = []
+    @wagons = []
+    @errors = []
   end
 
   def menu
@@ -33,6 +36,8 @@ class ControlPanel
       p "Enter '9' to  show list of stations "
       p "Enter '10' to  show list of trains on station "
       p "Enter '0 to go out"
+      output_errors unless @errors.empty?
+      @errors = []
       make_line
       answer  = gets.chomp.to_i
       menu_items(answer)
@@ -45,13 +50,14 @@ class ControlPanel
       when 1 then create_station
       when 2 then create_train
       when 3 then create_route
-      when 4 then manage_routes unless @routes.empty?
-      when 5 then assign_route unless @routes.empty? || @trains.empty?
+      when 4 then  manage_routes
+      when 5 then assign_route
       when 6 then add_wagon_to_train
       when 7 then remove_wagon_from_train
       when 8 then depart_train
       when 9 then  list_stations
       when 10 then show_trains_on_station unless @stations.empty? || @trains.empty?
+      when 11 then show_free_wagons
 
     end
   end
@@ -104,6 +110,7 @@ class ControlPanel
   end
 
   def manage_routes
+    return no_route if @routes.empty?
     p "Choose route to edit(add or delete stations)"
     @routes.each_with_index do |route, index|
       make_line("-r-")
@@ -123,23 +130,15 @@ class ControlPanel
         show_created_stations
         station = @stations[gets.chomp.to_i - 1]
         route.add_to_list(station)
-      when 2    # тут баг, но я еще вернусь (исправил)
-        if route.stations.size < 3
-          p "Route can't be modifed(minimum 2 points must be)"
-        else
-          p "Enter number of station"
-          route.print_list
-          station = @stations[gets.chomp.to_i]
-
-          p "Station #{station.name} was removed"
-          route.delete_station(station)
-        end
-
+      when 2
+        route.stations.size < 3 ? @errors << "Route can't be modifed(minimum 2 points must be)" : manage_routes_part(route)
     end
 
   end
 
   def assign_route
+    return no_route if @routes.empty?
+    return no_train if @trains.empty?
     p "Look and choose train"
     show_created_trains_no_index
     number = gets.chomp.to_i
@@ -157,56 +156,42 @@ class ControlPanel
     p "Enter train's number to add wagon"
     number = gets.chomp.to_i
     train = find_train(number)
-    train.class == PassengerTrain ? wagon = PassengerWagon.new : wagon = CargoWagon.new
+    train.is_a?(PassengerTrain) ? wagon = PassengerWagon.new : wagon = CargoWagon.new
     train.add_wagons(wagon)
   end
 
 #отцепка вагона от поезад
   def remove_wagon_from_train
+    return no_train if @trains.empty?
+
     show_created_trains_no_index
     p "Enter train's number to remove wagon"
     number = gets.chomp.to_i
     train = find_train(number)
+    return @errors << "No wagons found" if train.wagons.empty?
+    @wagons << train.wagons.last
     train.wagons.pop
   end
 
 #перемещение поезда
   def depart_train
+    return @errors << "No trains found" if @trains.empty?
     p "Look at list of trains and take one by number"
     show_created_trains_no_index
     number = gets.chomp.to_i
     train = find_train(number)
-
-    if  train.route.nil?
-        p "Assign a route to train first"
-        if @routes.empty?
-          p "No one route"
-          p "Create a route first"
-          create_route
+    return @errors << "Assign a route to train first" if train.route.nil?
+    p "Forward or Backward?"
+    p "Type 1 for train forward, or 2 to train backward"
+    input= gets.chomp.to_i
+      case input
+        when 1
+          train.move_forward unless train.route.nil? || train.last_station?
+          p "Train #{train.number} departed to #{train.current_station.name}"
+        when 2
+          train.move_backward unless train.route.nil? || train.first_station?
+          p "Train #{train.number} departed to #{train.current_station.name}"
         end
-
-        p "Choose one from list"
-        show_created_routes
-        route = @routes[gets.chomp.to_i - 1]
-        train.setup_route(route)
-        p "Route #{route} was assign to #{train}"
-        p "Forward or Backward?"
-        p "Type 1 for train forward, or 2 to train backward"
-        input= gets.chomp.to_i
-        case input
-          when 1
-            train.move_forward unless train.route.nil? || train.last_station?
-            p "Train #{train.number} departed to #{train.current_station.name}"
-          when 2
-            train.move_backward unless train.route.nil? || train.first_station?
-            p "Train #{train.number} departed to #{train.current_station.name}"
-        end
-
-
-    else
-      train.move_forward
-      p "Train #{train.number} departed "
-    end
   end
 
 #список станций
@@ -219,12 +204,23 @@ class ControlPanel
     p "Choose station by enter station's number"
     list_stations
     station  = @stations[gets.chomp.to_i - 1]
+    return no_train  if station.trains.empty?
     station.list_trains
-
   end
 
 
 private
+
+
+
+
+  def manage_routes_part(route)
+    p "Enter number of station"
+    route.print_list
+    station = @stations[gets.chomp.to_i]
+    p "Station #{station.name} was removed"
+    route.delete_station(station)
+  end
 
   def show_created_trains_no_index
     @trains.each { |train| p "Train's number: #{train.number}"}
@@ -239,11 +235,34 @@ private
   end
 
   def show_created_stations
-    @stations.each.with_index(1) {|station, index| p "#{index} - #{station.name}"}
+    @stations.each.with_index(1) {|station, index| p "#{index} - #{station.name}" }
+  end
+
+  def show_free_wagons
+    @passenger = @wagons.find_all{ |w| w.is_a?(PassengerWagon) }
+    @cargo = @wagons.find_all { |w| w.is_a?(CargoWagon) }
+    p "Free wagons on stations: "
+    p "Passenger - #{@passenger.size}"
+    p "Cargo     - #{@cargo.size}"
   end
 
   def make_line(char="-")
     p char * 30
+  end
+
+  def output_errors
+    @errors.each do |error|
+      make_line("-E-")
+      p error
+      end
+    end
+
+  def no_route
+    @errors << "No ROUTES found"
+  end
+
+  def no_train
+    @errors << "No TRAINS  found"
   end
 
 end

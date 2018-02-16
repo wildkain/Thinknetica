@@ -1,4 +1,4 @@
-require_relative "c_panel.rb"
+require_relative "control_panel.rb"
 
 
 menu  = ControlPanel.new

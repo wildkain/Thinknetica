@@ -1,10 +1,15 @@
 class Station
   attr_accessor :name, :trains
-
+  @@stations = []
+  include sManufacturer
   # #new инициализация параметров инстанса
   def initialize(name)
     @name = name
     @trains = []
+    @@stations << self
+  end
+  def self.find_all
+    @@stations
   end
 
 # принимаем поезд  - добавляем его в массив @trains интанса

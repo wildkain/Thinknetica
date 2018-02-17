@@ -1,13 +1,18 @@
 class Train
   attr_reader :number, :wagons, :type , :current_station
   attr_accessor :route
-
+  @@trains = []
+  
   def initialize(number)
     @number    = number
     @wagons  = []
     @speed = 0
+    @@trains[number] = self
   end
 
+  def self.find(number)
+    @@trains[number]
+  end
   # не смог придумать, как реализовать изменение скорости в одном методе
   # по-этому разделил на два
   def speed_up(value = 1)

@@ -1,7 +1,9 @@
+
+require_relative "./modules/manufacturer.rb"
 class Station
   attr_accessor :name, :trains
   @@stations = []
-  include sManufacturer
+  include Manufacturer
   # #new инициализация параметров инстанса
   def initialize(name)
     @name = name

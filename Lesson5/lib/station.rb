@@ -12,6 +12,7 @@ class Station
     register_instance
     @name = name
     @trains = []
+    @@stations << self
   end
 
   def self.find_all
@@ -46,5 +47,3 @@ class Station
     @trains.delete(train)
   end
 end
-
-

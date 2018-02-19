@@ -1,7 +1,7 @@
 class Train
   attr_reader :number, :wagons, :type , :current_station
   attr_accessor :route
-  @@trains = []
+  @@trains = {}
   include Manufacturer
   include InstanceCounter
 

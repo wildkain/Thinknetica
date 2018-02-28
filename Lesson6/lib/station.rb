@@ -51,6 +51,12 @@
   end
 
 
+  def valid?
+    validate!
+    true
+  end
+
+  protected
   def validate!
     validate_presence(@name)
     validate_length(@name)

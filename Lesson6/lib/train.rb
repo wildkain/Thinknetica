@@ -120,7 +120,7 @@ class Train
     validate!
     true
   end
-
+  protected
   def validate!
     validate_presence(@number)
     validate_length(@number)

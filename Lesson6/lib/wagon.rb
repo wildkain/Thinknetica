@@ -4,9 +4,14 @@ class Wagon
   include Validator
 
   def initialize(number)
-    @number = number[:name]
-    validate!(number)
+    validate_presence(number)
+    @number = number
   end
 
+
+def valid?
+  validate_presence(@number)
+  true
+end
 
 end

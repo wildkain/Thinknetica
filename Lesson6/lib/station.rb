@@ -10,9 +10,10 @@
 
   # #new инициализация параметров инстанса
   def initialize(params)
-   validate!(params)
+
     register_instance
     @name = params[:name]
+    validate!
     @trains = []
     @@stations << self
   end
@@ -47,5 +48,12 @@
 # удаляем поезд из массива @trains инстанса
   def train_out(train)
     @trains.delete(train)
+  end
+
+
+  def validate!
+    validate_presence(@name)
+    validate_length(@name)
+
   end
 end

@@ -2,6 +2,7 @@ class Train
   attr_reader :number, :wagons, :type , :current_station
   attr_accessor :route
   @@trains = {}
+
   VALID_NUMBER = /^[a-z0-9]{3}-?[a-z0-9]{2}$/i
 
   include Manufacturer
@@ -9,14 +10,15 @@ class Train
   include Validator
 
   def initialize(params)
-    validate!(number, "")
+    @number    = params[:number]
+    validate!
     register_instance
-    @number    = number
     @wagons  = []
     @speed = 0
     @@trains[number] = self
-
   end
+
+
 
   def self.find(number)
     @@trains[number]
@@ -112,6 +114,17 @@ class Train
 
   def first_station?
     current_station == @route.stations.first
+  end
+
+  def valid?
+    validate!
+    true
+  end
+
+  def validate!
+    validate_presence(@number)
+    validate_length(@number)
+    validate_format(@number)
   end
 
 end

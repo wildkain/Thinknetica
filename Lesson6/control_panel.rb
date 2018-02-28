@@ -11,9 +11,11 @@ require_relative "lib/passenger_wagon.rb"
 require_relative "lib/cargo_wagon.rb"
 
 
+
 class ControlPanel
   attr_accessor :station, :trains, :routes
   attr_reader :wagons
+@@wagon_index = 0
 
   def initialize
     @trains = []
@@ -68,27 +70,54 @@ class ControlPanel
 
   def create_station
     params = {}
+    begin
     p "Enter station name"
-    name = gets.chomp
+    name = gets.chomp.to_s
     params[:name] = name
     @stations << Station.new(params)
-    p "Station #{name} was created"
+    rescue RuntimeError => error
+      p "#{error.message}"
+      error=nil
+      retry
+    rescue NameError => error
+      p  "#{error.message}"
+      error=nil
+      retry
+    end
+    p "Try else" if error
+    p "Station #{name} was created" unless error
   end
 
+
+
   def create_train
-    p "Enter Trains number"
-    num= gets.chomp.to_i
     p "Enter train's type. '1' - Passenger. '2' - Cargo"
     type = gets.chomp.to_i
-
+    begin
+    p "Enter Trains number"
+    number= gets.chomp
+    params = {number: number}
     case type
-      when 1 then @train  = PassengerTrain.new(num)
-      when 2 then @train = CargoTrain.new(num)
+      when 1 then @train  = PassengerTrain.new(params)
+      when 2 then @train = CargoTrain.new(params)
     else
       p "Enter please only 1 or 2."
     end
+
+    rescue RuntimeError => error
+      p "#{error.message}"
+      retry
+    rescue NameError => error
+      p  "#{error.message}"
+      retry
+    rescue TypeError => error
+      p  "#{error.message}"
+      retry
+    end
     p "Train  #{@train.type} #{@train.number} was created" if @train
-    @trains << @train
+    @train ? @trains << @train : nil
+    p "Try else" if error
+
   end
 
   def create_route
@@ -161,10 +190,11 @@ class ControlPanel
   def add_wagon_to_train
     show_created_trains_no_index
     p "Enter train's number to add wagon"
-    number = gets.chomp.to_i
+    number = gets.chomp
     train = find_train(number)
-    train.is_a?(PassengerTrain) ? wagon = PassengerWagon.new : wagon = CargoWagon.new
+    train.is_a?(PassengerTrain) ? wagon = PassengerWagon.new(@@wagon_index+=1) : wagon = CargoWagon.new(@@wagon_index+=1)
     train.add_wagons(wagon)
+
   end
 
 #отцепка вагона от поезад

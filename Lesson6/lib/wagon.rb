@@ -1,17 +1,19 @@
 class Wagon
-	attr_accessor :number
-	include Manufacturer
+  include Manufacturer
   include Validator
 
+	attr_accessor :number
+
   def initialize(number)
-    validate_presence(number)
     @number = number
+    validate!
   end
 
+  protected
 
-def valid?
-  validate_presence(@number)
-  true
-end
+  def validate!
+    validate_presence(@number)
+    true
+  end
 
 end

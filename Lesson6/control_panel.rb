@@ -123,6 +123,7 @@ class ControlPanel
   def create_route
     # нужны 2 обьекта станции как минимум.
     return if @stations.size < 2
+    begin
     p "Choose first point of route"
     p "Aviable point based on your creations:"
     show_created_stations
@@ -142,7 +143,9 @@ class ControlPanel
     else
       p "Unable to create route. First point equal last"
     end
-
+    rescue RuntimeError => error
+      p "#{error.message}"
+      retry
   end
 
   def manage_routes
@@ -189,12 +192,16 @@ class ControlPanel
 #добавление вагона к поезду
   def add_wagon_to_train
     show_created_trains_no_index
-    p "Enter train's number to add wagon"
-    number = gets.chomp
-    train = find_train(number)
-    train.is_a?(PassengerTrain) ? wagon = PassengerWagon.new(@@wagon_index+=1) : wagon = CargoWagon.new(@@wagon_index+=1)
-    train.add_wagons(wagon)
-
+    begin
+      p "Enter train's number to add wagon"
+      number = gets.chomp
+      train = find_train(number)
+      train.is_a?(PassengerTrain) ? wagon = PassengerWagon.new(@@wagon_index+=1) : wagon = CargoWagon.new(@@wagon_index+=1)
+      train.add_wagons(wagon)
+    rescue RuntimeError => error
+      p "#{error.message}"
+    retry
+    end
   end
 
 #отцепка вагона от поезад

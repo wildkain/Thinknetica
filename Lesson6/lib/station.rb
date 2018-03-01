@@ -1,12 +1,10 @@
-  class Station
+class Station
+  include InstanceCounter
+  include Validator
 
   attr_accessor :name, :trains
 
   @@stations = []
-
-
-  include InstanceCounter
-  include Validator
 
   # #new инициализация параметров инстанса
   def initialize(params)
@@ -21,7 +19,6 @@
   def self.find_all
     @@stations
   end
-
 
 # принимаем поезд  - добавляем его в массив @trains интанса
   def take_train(train)
@@ -39,27 +36,24 @@
       p "В данный момент на станции #{@name} количество поездов с типом #{type} :  #{counter.count}"
     elsif @trains.empty?
       p "На станции вообще нет поездов"
-  else
+    else
     p "На станции нет поездов с таким типом"
+    end
   end
 
-
-  end
 # удаляем поезд из массива @trains инстанса
   def train_out(train)
     @trains.delete(train)
   end
 
 
-  def valid?
-    validate!
-    true
-  end
 
   protected
+
   def validate!
     validate_presence(@name)
     validate_length(@name)
-
+    true
   end
+
 end

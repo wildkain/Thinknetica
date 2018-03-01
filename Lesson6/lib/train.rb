@@ -1,13 +1,13 @@
 class Train
+  include Manufacturer
+  include InstanceCounter
+  include Validator
+
   attr_reader :number, :wagons, :type , :current_station
   attr_accessor :route
   @@trains = {}
 
   VALID_NUMBER = /^[a-z0-9]{3}-?[a-z0-9]{2}$/i
-
-  include Manufacturer
-  include InstanceCounter
-  include Validator
 
   def initialize(params)
     @number    = params[:number]
@@ -18,13 +18,10 @@ class Train
     @@trains[number] = self
   end
 
-
-
   def self.find(number)
     @@trains[number]
   end
-  # не смог придумать, как реализовать изменение скорости в одном методе
-  # по-этому разделил на два
+
   def speed_up(value = 1)
     if value < 0 || current_speed >= 200
       return
@@ -95,6 +92,7 @@ class Train
       p "Нельзя прицеплять вагоны на ходу. Сбросьте скорость"
     end
   end
+
 # добавил проверку скорости
   def delete_wagons(vagons = 1)
     if @speed == 0
@@ -116,15 +114,18 @@ class Train
     current_station == @route.stations.first
   end
 
-  def valid?
-    validate!
-    true
-  end
   protected
+
+  #validate format with regular expr
+  def validate_format(atr)
+    raise TypeError, "Invalid FORMAT of identifical number(valid example 000-sd)" unless atr =~ VALID_NUMBER
+  end
+
   def validate!
     validate_presence(@number)
     validate_length(@number)
     validate_format(@number)
+    true
   end
 
 end

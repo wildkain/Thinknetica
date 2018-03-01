@@ -1,6 +1,7 @@
 class Route
   include InstanceCounter
   include Validator
+  include Comparable
 
   attr_accessor :stations
 
@@ -10,11 +11,9 @@ class Route
     validate!
   end
 
-
   def add_to_list(station)
     @stations.insert(-2, station)
   end
-
 
   def delete_station(station)
     @stations.delete(station)
@@ -29,8 +28,7 @@ class Route
   protected
 
   def validate!
-    raise "Bad stations in the route" unless @stations.first.valid? || @stations.last.valid?
-    true
+    raise "That is not a station" unless @stations.first.is_a?(Station) || @stations.last.is_a?(Station)
+    raise "Not unique points" if @stations.first.similar_to?(@stations.last)
   end
-
 end

@@ -46,14 +46,16 @@ class Station
     @trains.delete(train)
   end
 
-
+  def similar_to?(other)
+    return true if self.name.downcase == other.name.downcase
+    false
+  end
 
   protected
 
   def validate!
     validate_presence(@name)
     validate_length(@name)
-    true
   end
 
 end

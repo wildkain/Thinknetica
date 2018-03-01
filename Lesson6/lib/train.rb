@@ -125,7 +125,5 @@ class Train
     validate_presence(@number)
     validate_length(@number)
     validate_format(@number)
-    true
   end
-
 end

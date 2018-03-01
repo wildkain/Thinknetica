@@ -9,7 +9,7 @@ module InstanceCounter
 
     def counter_up
       @instances ||= 0
-      @instances +=1
+      @instances += 1
     end
 
   end
@@ -23,5 +23,4 @@ module InstanceCounter
     end
 
   end
-
 end

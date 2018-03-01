@@ -146,6 +146,7 @@ class ControlPanel
     rescue RuntimeError => error
       p "#{error.message}"
       retry
+    end
   end
 
   def manage_routes
@@ -157,7 +158,6 @@ class ControlPanel
       route.stations.each { |station| p "#{station.name}"}
       make_line("-r-")
     end
-
     input = gets.chomp.to_i
     route = @routes[input]
     p "Route to edit - - #{route.stations.first.name} => #{route.stations.last.name}"
@@ -172,7 +172,6 @@ class ControlPanel
       when 2
         route.stations.size < 3 ? @errors << "Route can't be modifed(minimum 2 points must be)" : manage_routes_part(route)
     end
-
   end
 
   def assign_route
@@ -252,11 +251,7 @@ class ControlPanel
     station.list_trains
   end
 
-
 private
-
-
-
 
   def manage_routes_part(route)
     p "Enter number of station"
@@ -283,7 +278,7 @@ private
   end
 
   def show_free_wagons
-    @passenger = @wagons.find_all{ |w| w.is_a?(PassengerWagon) }
+    @passenger = @wagons.find_all { |w| w.is_a?(PassengerWagon) }
     @cargo = @wagons.find_all { |w| w.is_a?(CargoWagon) }
     p "Free wagons on stations: "
     p "Passenger - #{@passenger.size}"
@@ -308,5 +303,4 @@ private
   def no_train
     @errors << "No TRAINS  found"
   end
-
 end

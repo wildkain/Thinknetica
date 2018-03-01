@@ -1,7 +1,7 @@
 module Validator
-
   def valid?
     validate!
+    true
   rescue
     false
   end
@@ -14,5 +14,4 @@ module Validator
   def validate_length(atr)
     raise NameError, "Attribute is too short" if atr.size < 3
   end
-
 end

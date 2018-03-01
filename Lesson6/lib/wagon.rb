@@ -13,7 +13,6 @@ class Wagon
 
   def validate!
     validate_presence(@number)
-    true
   end
 
 end

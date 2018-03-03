@@ -25,8 +25,8 @@ class Station
     @trains << train
   end
 
-  def list_trains
-     @trains.each { |train| puts "Номер поезда: #{train.number}--Тип:#{train.class}--Кол-во вагонов:#{train.wagons.size}" }
+  def list_trains(&block)
+     @trains.each { |train| block.call(train)  }
   end
 
   # группировка по типу поезда. принимает тип и группирует по нему с выводом количества.

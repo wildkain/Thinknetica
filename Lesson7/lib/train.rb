@@ -114,6 +114,10 @@ class Train
     current_station == @route.stations.first
   end
 
+  def list_wagons(&block)
+    @wagons.each {|wagon| block.call(wagon) }
+  end
+
   protected
 
   #validate format with regular expr

@@ -9,12 +9,9 @@ class Wagon
     validate!
   end
 
-
-
   protected
 
   def validate!
     validate_presence(@number)
   end
-
 end

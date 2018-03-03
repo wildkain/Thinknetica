@@ -13,9 +13,9 @@ require_relative "lib/cargo_wagon.rb"
 
 
 class ControlPanel
-  attr_accessor :station, :trains, :routes
+  attr_accessor :stations, :trains, :routes
   attr_reader :wagons
-@@wagon_index = 0
+  @@wagon_index = 0
 
   def initialize
     @trains = []
@@ -40,7 +40,8 @@ class ControlPanel
       p "Enter '8' to  depart train from station"
       p "Enter '9' to  show list of stations "
       p "Enter '10' to  show list of trains on station "
-      p "Enter  '11' to show free wagons in depo"
+      p "Enter '11' to show free wagons in depo"
+      p "Enter '12' to show train's wagons"
       p "Enter '0 to go out"
       output_errors unless @errors.empty?
       @errors = []
@@ -64,6 +65,7 @@ class ControlPanel
       when 9 then  list_stations
       when 10 then show_trains_on_station unless @stations.empty? || @trains.empty?
       when 11 then show_free_wagons
+      when 12 then show_wagons_for_train
 
     end
   end
@@ -179,7 +181,7 @@ class ControlPanel
     return no_train if @trains.empty?
     p "Look and choose train"
     show_created_trains_no_index
-    number = gets.chomp.to_i
+    number = gets.chomp
     train = find_train(number)
     p "Look and choose route"
     show_created_routes
@@ -195,7 +197,16 @@ class ControlPanel
       p "Enter train's number to add wagon"
       number = gets.chomp
       train = find_train(number)
-      train.is_a?(PassengerTrain) ? wagon = PassengerWagon.new(@@wagon_index+=1) : wagon = CargoWagon.new(@@wagon_index+=1)
+      if train.is_a?(PassengerTrain)
+        p "Enter number of seats of wagon"
+        seats = gets.chomp.to_i
+        wagon = PassengerWagon.new(@@wagon_index+=1, seats)
+      else
+        p "Enter cargo volume of wagon"
+        volume = gets.chomp.to_i
+        wagon = CargoWagon.new(@@wagon_index+=1, volume)
+      end
+
       train.add_wagons(wagon)
     rescue RuntimeError => error
       p "#{error.message}"
@@ -206,7 +217,6 @@ class ControlPanel
 #отцепка вагона от поезад
   def remove_wagon_from_train
     return no_train if @trains.empty?
-
     show_created_trains_no_index
     p "Enter train's number to remove wagon"
     number = gets.chomp.to_i
@@ -227,14 +237,14 @@ class ControlPanel
     p "Forward or Backward?"
     p "Type 1 for train forward, or 2 to train backward"
     input= gets.chomp.to_i
-      case input
-        when 1
-          train.move_forward unless train.route.nil? || train.last_station?
-          p "Train #{train.number} departed to #{train.current_station.name}"
-        when 2
-          train.move_backward unless train.route.nil? || train.first_station?
-          p "Train #{train.number} departed to #{train.current_station.name}"
-        end
+    case input
+      when 1
+        train.move_forward unless train.route.nil? || train.last_station?
+        p "Train #{train.number} departed to #{train.current_station.name}"
+      when 2
+        train.move_backward unless train.route.nil? || train.first_station?
+        p "Train #{train.number} departed to #{train.current_station.name}"
+    end
   end
 
 #список станций
@@ -248,8 +258,21 @@ class ControlPanel
     list_stations
     station  = @stations[gets.chomp.to_i - 1]
     return no_train  if station.trains.empty?
-    station.list_trains
+    station.list_trains { |train| make_line; p  "Train number: #{train.number}, Type: #{train.model},  Wagons  #{train.wagons.count}" }
   end
+
+  def show_wagons_for_train
+    show_created_trains_no_index
+    p "Enter train's number to list wagons"
+    number = gets.chomp
+    train = find_train(number)
+    if train.is_a?(PassengerTrain)
+      train.list_wagons {|wagon| p "Number: #{wagon.number}, Model: #{wagon.model}, Free seats: #{wagon.free_places.count}, Busy: #{wagon.busy_places.count}"}
+    else
+      train.list_wagons {|wagon| p "Number: #{wagon.number}, Model: #{wagon.model}, Free space: #{wagon.free_space}, Loaded: #{wagon.loaded_space}"}
+    end
+   end
+
 
 private
 
@@ -266,7 +289,7 @@ private
   end
 
   def find_train(number)
-    @trains.find {|tr| tr.number == number }
+    @trains.find { |tr| tr.number == number }
   end
 
   def show_created_routes

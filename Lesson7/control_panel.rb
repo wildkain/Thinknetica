@@ -42,6 +42,7 @@ class ControlPanel
       p "Enter '10' to  show list of trains on station "
       p "Enter '11' to show free wagons in depo"
       p "Enter '12' to show train's wagons"
+      p "Enter '13' to POPULATE RAILROAD"
       p "Enter '0 to go out"
       output_errors unless @errors.empty?
       @errors = []
@@ -66,6 +67,7 @@ class ControlPanel
       when 10 then show_trains_on_station unless @stations.empty? || @trains.empty?
       when 11 then show_free_wagons
       when 12 then show_wagons_for_train
+      when 13 then populate_railroad
 
     end
   end
@@ -108,12 +110,15 @@ class ControlPanel
 
     rescue RuntimeError => error
       p "#{error.message}"
+      error=nil
       retry
     rescue NameError => error
       p  "#{error.message}"
+      error=nil
       retry
     rescue TypeError => error
       p  "#{error.message}"
+      error=nil
       retry
     end
     p "Train  #{@train.type} #{@train.number} was created" if @train
@@ -258,7 +263,7 @@ class ControlPanel
     list_stations
     station  = @stations[gets.chomp.to_i - 1]
     return no_train  if station.trains.empty?
-    station.list_trains { |train| make_line; p  "Train number: #{train.number}, Type: #{train.model},  Wagons  #{train.wagons.count}" }
+    station.list_trains { |train| make_line; p  "Train number: #{train.number}, Type: #{train.type},  Wagons  #{train.wagons.count}" }
   end
 
   def show_wagons_for_train
@@ -271,7 +276,28 @@ class ControlPanel
     else
       train.list_wagons {|wagon| p "Number: #{wagon.number}, Model: #{wagon.model}, Free space: #{wagon.free_space}, Loaded: #{wagon.loaded_space}"}
     end
-   end
+  end
+
+  def populate_railroad
+    params_tr = {number:"000-sd"}
+    params_tr2 = {number:"FFF-ff"}
+    params_st1 = {name:"Voronezh"}
+    params_st2 = {name: "Moscow"}
+    tr1 = PassengerTrain.new(params_tr)
+    tr2 = PassengerTrain.new(params_tr2)
+    @trains << tr1
+    @trains << tr2
+    w1  = PassengerWagon.new("First", 5)
+    w2  = PassengerWagon.new("Second", 3)
+    tr1.add_wagons(w1)
+    st1 = Station.new(params_st1)
+    st2 = Station.new(params_st2)
+    @stations << st1
+    @stations << st2
+    rt  = Route.new(st1, st2)
+    @routes << rt
+    tr1.setup_route(rt)
+  end
 
 
 private

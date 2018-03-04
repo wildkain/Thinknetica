@@ -4,7 +4,7 @@ class Wagon
 
 	attr_accessor :number
 
-  def initialize(number,places)
+  def initialize(number)
     @number = number
     validate!
   end

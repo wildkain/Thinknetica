@@ -26,7 +26,7 @@ class Station
   end
 
   def list_trains(&block)
-     @trains.each { |train| block.call(train)  }
+     @trains.each { |train| yield(train)  }
   end
 
   # группировка по типу поезда. принимает тип и группирует по нему с выводом количества.

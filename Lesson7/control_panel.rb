@@ -43,6 +43,7 @@ class ControlPanel
       p "Enter '11' to show free wagons in depo"
       p "Enter '12' to show train's wagons"
       p "Enter '13' to POPULATE RAILROAD"
+      p "Enter '14' to load wagon or buy ticket"
       p "Enter '0 to go out"
       output_errors unless @errors.empty?
       @errors = []
@@ -68,6 +69,7 @@ class ControlPanel
       when 11 then show_free_wagons
       when 12 then show_wagons_for_train
       when 13 then populate_railroad
+      when 14 then load_wagon
 
     end
   end
@@ -272,10 +274,27 @@ class ControlPanel
     number = gets.chomp
     train = find_train(number)
     if train.is_a?(PassengerTrain)
-      train.list_wagons {|wagon| p "Number: #{wagon.number}, Model: #{wagon.model}, Free seats: #{wagon.free_places.count}, Busy: #{wagon.busy_places.count}"}
+      train.list_wagons {|wagon| p "Number: #{wagon.number}, Model: #{wagon.model}, Free seats: #{wagon.free_places}, Busy: #{wagon.busy_places}"}
     else
       train.list_wagons {|wagon| p "Number: #{wagon.number}, Model: #{wagon.model}, Free space: #{wagon.free_space}, Loaded: #{wagon.loaded_space}"}
     end
+  end
+
+  def load_wagon
+    show_created_trains_no_index
+    p "Enter train's number to list wagons"
+    number = gets.chomp
+    train = find_train(number)
+    p "Find your wagon in list, then enter NUMBER  "
+    if train.is_a?(PassengerTrain)
+      train.list_wagons {|wagon| p "Number: #{wagon.number},  Free seats: #{wagon.free_places}, Busy: #{wagon.busy_places}"}
+      w_number = gets.chomp.to_i
+    else
+      train.list_wagons {|wagon| p "Number: #{wagon.number},  Free space: #{wagon.free_space}, Loaded: #{wagon.loaded_space}"}
+      w_number = gets.chomp.to_i
+    end
+    wagon = train.find_wagon(w_number)
+    wagon.is_a?(PassengerWagon) ? load_pass(wagon) : load_cargo(wagon)
   end
 
   def populate_railroad
@@ -287,8 +306,8 @@ class ControlPanel
     tr2 = PassengerTrain.new(params_tr2)
     @trains << tr1
     @trains << tr2
-    w1  = PassengerWagon.new("First", 5)
-    w2  = PassengerWagon.new("Second", 3)
+    w1  = PassengerWagon.new(1, 5)
+    w2  = PassengerWagon.new(2, 3)
     tr1.add_wagons(w1)
     st1 = Station.new(params_st1)
     st2 = Station.new(params_st2)
@@ -343,7 +362,22 @@ private
       make_line("-E-")
       p error
       end
-    end
+  end
+
+  def load_pass(wagon)
+    p "Choose free seat(enter number) and seat down"
+    p wagon.free_places {|free_places| free_places.keys }
+    place = gets.chomp.to_i
+    wagon.load_passenger(place)
+    p "Place '#{place}' is yours"
+  end
+
+  def load_cargo(wagon)
+    "Choose volume of cargo"
+    volume = gets.chomp.to_i
+    wagon.load_space(volume)
+    p "You have successfully uploaded in wagon number:#{wagon.number} || Volume : #{volume}  "
+  end
 
   def no_route
     @errors << "No ROUTES found"

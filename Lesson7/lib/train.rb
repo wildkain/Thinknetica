@@ -22,6 +22,11 @@ class Train
     @@trains[number]
   end
 
+  def find_wagon(number)
+    res = @wagons.select {|wagon| wagon.number == number}
+    res.first
+  end
+
   def speed_up(value = 1)
     if value < 0 || current_speed >= 200
       return

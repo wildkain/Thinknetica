@@ -7,6 +7,7 @@ class Wagon
   def initialize(number)
     @number = number
     validate!
+    @model = self.is_a?(PassengerWagon) ? @model  = "Passenger" : @model = "Cargo"
   end
 
   protected

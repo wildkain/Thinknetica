@@ -6,11 +6,10 @@ class CargoWagon < Wagon
     super(number)
     @space = [space, MAX_LOAD].min
     @loaded_space = 0
-    @model = "Cargo"
   end
 
   def load_space(val)
-    return if val > (@space - @loaded_space)
+    return if val > free_space
     @loaded_space += val
   end
 
@@ -20,6 +19,6 @@ class CargoWagon < Wagon
   end
 
   def free_space
-    free_space = @space - @loaded_space
+    @space - @loaded_space
   end
 end

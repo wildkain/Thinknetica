@@ -10,10 +10,10 @@ class Train
   VALID_NUMBER = /^[a-z0-9]{3}-?[a-z0-9]{2}$/i
 
   def initialize(params)
-    @number    = params[:number]
+    @number = params[:number]
     validate!
     register_instance
-    @wagons  = []
+    @wagons = []
     @speed = 0
     @@trains[number] = self
   end
@@ -44,7 +44,6 @@ class Train
       @speed = 0
     end
   end
-
 
   def stop
     @speed = 0

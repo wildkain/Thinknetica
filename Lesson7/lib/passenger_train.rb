@@ -2,7 +2,7 @@ class PassengerTrain < Train
  #child class of Train
   def initialize(number)
  	  super
- 	  @type  = "PassengerTrain"
+ 	  @type = "PassengerTrain"
   end
 
   def add_wagons(wagon)

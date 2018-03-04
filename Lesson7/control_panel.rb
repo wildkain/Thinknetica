@@ -48,7 +48,7 @@ class ControlPanel
       output_errors unless @errors.empty?
       @errors = []
       make_line
-      answer  = gets.chomp.to_i
+      answer = gets.chomp.to_i
       menu_items(answer)
     end
   end
@@ -83,11 +83,11 @@ class ControlPanel
     @stations << Station.new(params)
     rescue RuntimeError => error
       p "#{error.message}"
-      error=nil
+      error = nil
       retry
     rescue NameError => error
-      p  "#{error.message}"
-      error=nil
+      p "#{error.message}"
+      error = nil
       retry
     end
     p "Try else" if error
@@ -112,15 +112,15 @@ class ControlPanel
 
     rescue RuntimeError => error
       p "#{error.message}"
-      error=nil
+      error = nil
       retry
     rescue NameError => error
-      p  "#{error.message}"
-      error=nil
+      p "#{error.message}"
+      error = nil
       retry
     rescue TypeError => error
-      p  "#{error.message}"
-      error=nil
+      p "#{error.message}"
+      error = nil
       retry
     end
     p "Train  #{@train.type} #{@train.number} was created" if @train
@@ -164,7 +164,7 @@ class ControlPanel
     @routes.each_with_index do |route, index|
       make_line("-r-")
       p "Route - #{index}"
-      route.stations.each { |station| p "#{station.name}"}
+      route.stations.each { |station| p "#{station.name}" }
       make_line("-r-")
     end
     input = gets.chomp.to_i
@@ -213,7 +213,6 @@ class ControlPanel
         volume = gets.chomp.to_i
         wagon = CargoWagon.new(@@wagon_index+=1, volume)
       end
-
       train.add_wagons(wagon)
     rescue RuntimeError => error
       p "#{error.message}"
@@ -265,7 +264,7 @@ class ControlPanel
     list_stations
     station  = @stations[gets.chomp.to_i - 1]
     return no_train  if station.trains.empty?
-    station.list_trains { |train| make_line; p  "Train number: #{train.number}, Type: #{train.type},  Wagons  #{train.wagons.count}" }
+    station.list_trains { |train| make_line; p "Train number: #{train.number}, Type: #{train.type},  Wagons  #{train.wagons.count}" }
   end
 
   def show_wagons_for_train
@@ -274,9 +273,9 @@ class ControlPanel
     number = gets.chomp
     train = find_train(number)
     if train.is_a?(PassengerTrain)
-      train.list_wagons {|wagon| p "Number: #{wagon.number}, Model: #{wagon.model}, Free seats: #{wagon.free_places}, Busy: #{wagon.busy_places}"}
+      train.list_wagons { |wagon| p "Number: #{wagon.number}, Model: #{wagon.model}, Free seats: #{wagon.free_places}, Busy: #{wagon.busy_places}" }
     else
-      train.list_wagons {|wagon| p "Number: #{wagon.number}, Model: #{wagon.model}, Free space: #{wagon.free_space}, Loaded: #{wagon.loaded_space}"}
+      train.list_wagons { |wagon| p "Number: #{wagon.number}, Model: #{wagon.model}, Free space: #{wagon.free_space}, Loaded: #{wagon.loaded_space}" }
     end
   end
 
@@ -285,7 +284,7 @@ class ControlPanel
     p "Enter train's number to list wagons"
     number = gets.chomp
     train = find_train(number)
-    p "Find your wagon in list, then enter NUMBER  "
+    p "Find your wagon in list, then enter NUMBER"
     if train.is_a?(PassengerTrain)
       train.list_wagons {|wagon| p "Number: #{wagon.number},  Free seats: #{wagon.free_places}, Busy: #{wagon.busy_places}"}
     else
@@ -297,10 +296,10 @@ class ControlPanel
   end
 
   def populate_railroad
-    params_tr = {number:"000-sd"}
-    params_tr2 = {number:"FFF-ff"}
-    params_st1 = {name:"Voronezh"}
-    params_st2 = {name: "Moscow"}
+    params_tr = { number:"000-sd" }
+    params_tr2 = { number:"FFF-ff" }
+    params_st1 = { name:"Voronezh" }
+    params_st2 = { name: "Moscow" }
     tr1 = PassengerTrain.new(params_tr)
     tr2 = PassengerTrain.new(params_tr2)
     @trains << tr1
@@ -341,7 +340,7 @@ private
   end
 
   def show_created_stations
-    @stations.each.with_index(1) {|station, index| p "#{index} - #{station.name}" }
+    @stations.each.with_index(1) { |station, index| p "#{index} - #{station.name}" }
   end
 
   def show_free_wagons
@@ -352,7 +351,7 @@ private
     p "Cargo     - #{@cargo.size}"
   end
 
-  def make_line(char="-")
+  def make_line(char = "-")
     p char * 30
   end
 
@@ -360,12 +359,12 @@ private
     @errors.each do |error|
       make_line("-E-")
       p error
-      end
+    end
   end
 
   def load_pass(wagon)
     p "Choose free seat(enter number) and seat down"
-    p wagon.free_places {|free_places| free_places.keys }
+    p (wagon.free_places { |free_places| free_places.keys })
     place = gets.chomp.to_i
     wagon.load_passenger(place)
     p "Place '#{place}' is yours"

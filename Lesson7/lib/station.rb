@@ -25,7 +25,7 @@ class Station
     @trains << train
   end
 
-  def list_trains(&block)
+  def list_trains
      @trains.each { |train| yield(train)  }
   end
 
@@ -57,5 +57,4 @@ class Station
     validate_presence(@name)
     validate_length(@name)
   end
-
 end

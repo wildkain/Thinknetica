@@ -1,13 +1,12 @@
 class CargoWagon < Wagon
   MAX_LOAD  = 1000
-  attr_accessor :space
-  attr_reader :type
+  attr_accessor :space, :loaded_space
 
   def initialize(number, space)
     super(number)
     @space = [space, MAX_LOAD].min
     @loaded_space = 0
-    @type = "Cargo"
+    @model = "Cargo"
   end
 
   def load_space(val)

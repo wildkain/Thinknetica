@@ -1,5 +1,5 @@
 class PassengerWagon < Wagon
-  attr_accessor :model, :places, :free_places, :busy_places
+  attr_accessor  :places, :free_places, :busy_places
 
   def initialize(number, places)
     super(number)

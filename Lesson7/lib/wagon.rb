@@ -2,7 +2,7 @@ class Wagon
   include Manufacturer
   include Validator
 
-	attr_accessor :number
+	attr_accessor :number, :model
 
   def initialize(number)
     @number = number

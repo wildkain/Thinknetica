@@ -288,11 +288,10 @@ class ControlPanel
     p "Find your wagon in list, then enter NUMBER  "
     if train.is_a?(PassengerTrain)
       train.list_wagons {|wagon| p "Number: #{wagon.number},  Free seats: #{wagon.free_places}, Busy: #{wagon.busy_places}"}
-      w_number = gets.chomp.to_i
     else
       train.list_wagons {|wagon| p "Number: #{wagon.number},  Free space: #{wagon.free_space}, Loaded: #{wagon.loaded_space}"}
-      w_number = gets.chomp.to_i
     end
+    w_number = gets.chomp.to_i
     wagon = train.find_wagon(w_number)
     wagon.is_a?(PassengerWagon) ? load_pass(wagon) : load_cargo(wagon)
   end
@@ -373,7 +372,7 @@ private
   end
 
   def load_cargo(wagon)
-    "Choose volume of cargo"
+    p "Choose volume of cargo"
     volume = gets.chomp.to_i
     wagon.load_space(volume)
     p "You have successfully uploaded in wagon number:#{wagon.number} || Volume : #{volume}  "

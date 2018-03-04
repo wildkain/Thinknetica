@@ -53,7 +53,6 @@ class ControlPanel
     end
   end
 
-
   def menu_items(answer)
     case answer
       when 1 then create_station
@@ -93,8 +92,6 @@ class ControlPanel
     p "Try else" if error
     p "Station #{name} was created" unless error
   end
-
-
 
   def create_train
     p "Enter train's type. '1' - Passenger. '2' - Cargo"
@@ -315,7 +312,6 @@ class ControlPanel
     @routes << rt
     tr1.setup_route(rt)
   end
-
 
 private
 

@@ -1,5 +1,4 @@
 class CargoWagon < Wagon
-
   MAX_LOAD = 1000
 
   attr_accessor :space, :loaded_space

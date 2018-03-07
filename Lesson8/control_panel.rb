@@ -11,7 +11,6 @@ require_relative 'lib/passenger_wagon.rb'
 require_relative 'lib/cargo_wagon.rb'
 
 class ControlPanel
-
   attr_accessor :stations, :trains, :routes
   attr_reader :wagons
 
@@ -54,11 +53,13 @@ class ControlPanel
 
   def menu_items(answer)
     actions =
-              { 1 => method(:create_station), 2 => method(:create_train), 3 => method(:create_route),
-                4 => method(:manage_routes), 5 => method(:assign_route), 6 => method(:add_wagon_to_train),
-                7 => method(:remove_wagon_from_train), 8 => method(:depart_train), 9 => method(:list_stations),
-                10 => method(:show_trains_on_station), 11 => method(:show_free_wagons),
-                12 => method(:show_wagons_for_train), 13 => method(:populate_railroad), 14 => method(:load_wagon) }
+      { 1 => method(:create_station), 2 => method(:create_train),
+        3 => method(:create_route), 4 => method(:manage_routes),
+        5 => method(:assign_route), 6 => method(:add_wagon_to_train),
+        7 => method(:remove_wagon_from_train), 8 => method(:depart_train),
+        9 => method(:list_stations), 10 => method(:show_trains_on_station),
+        11 => method(:show_free_wagons), 12 => method(:show_wagons_for_train),
+        13 => method(:populate_railroad), 14 => method(:load_wagon) }
     actions[answer].call if actions.key?(answer)
   end
 
@@ -70,14 +71,11 @@ class ControlPanel
       @stations << Station.new(params)
     rescue RuntimeError => error
       p error.message.to_s
-      error = nil
       retry
     rescue NameError => error
       p error.message.to_s
-      error = nil
       retry
     end
-    p 'Try else' if error
     p "Station '#{params[:name]}' was created" unless error
   end
 
@@ -95,20 +93,16 @@ class ControlPanel
       end
     rescue RuntimeError => error
       p error.message.to_s
-      error = nil
       retry
     rescue NameError => error
       p error.message.to_s
-      error = nil
       retry
     rescue TypeError => error
       p error.message.to_s
-      error = nil
       retry
     end
     p "Train  #{@train.type} #{@train.number} was created" if @train
     @train ? @trains << @train : nil
-    p 'Try else' if error
   end
 
   def create_route
@@ -150,7 +144,7 @@ class ControlPanel
     end
     input = gets.chomp.to_i
     route = @routes[input]
-    p "Route to edit - - #{route.stations.first.name} => #{route.stations.last.name}"
+    p "Route to edit: #{route.stations.first.name}-#{route.stations.last.name}"
     p 'Enter 1 if you want to add station to route'
     p 'Enter 2 if you want to delete station'
     case gets.chomp.to_i
@@ -160,7 +154,7 @@ class ControlPanel
       station = @stations[gets.chomp.to_i - 1]
       route.add_to_list(station)
     when 2
-      route.stations.size < 3 ? @errors << "Route can't be modify(minimum 2 points must be)" : manage_routes_part(route)
+      route.modify? ? manage_routes_part(route) : @errors << "Can't be modify"
     else
       p 'Bad choice'
     end
@@ -180,7 +174,6 @@ class ControlPanel
     p "Route #{route} was assign to #{train}"
   end
 
-  # добавление вагона к поезду
   def add_wagon_to_train
     show_created_trains_no_index
     begin
@@ -203,7 +196,6 @@ class ControlPanel
     end
   end
 
-  # отцепка вагона от поезад
   def remove_wagon_from_train
     return no_train if @trains.empty?
     show_created_trains_no_index
@@ -215,7 +207,6 @@ class ControlPanel
     train.wagons.pop
   end
 
-  # перемещение поезда
   def depart_train
     return @errors << 'No trains found' if @trains.empty?
     p 'Look at list of trains and take one by number'
@@ -238,19 +229,19 @@ class ControlPanel
     end
   end
 
-  # список станций
   def list_stations
     show_created_stations
   end
 
-  # список поездов
   def show_trains_on_station
     return if @stations.empty?
     p "Choose station by enter station's number"
     list_stations
     station = @stations[gets.chomp.to_i - 1]
     return no_train if station.trains.empty?
-    station.list_trains { |train| make_line; p "Train number: #{train.number}, Type: #{train.type},  Wagons  #{train.wagons.count}" }
+    station.list_trains do |train|
+      p "Number\Type\Wagon: #{train.number}|#{train.type}|#{train.wagons.count}"
+    end
   end
 
   def show_wagons_for_train
@@ -259,23 +250,22 @@ class ControlPanel
     number = gets.chomp
     train = find_train(number)
     if train.is_a?(PassengerTrain)
-      train.list_wagons { |wagon| p "Number: #{wagon.number}, Model: #{wagon.model}, Free seats: #{wagon.free_places}, Busy: #{wagon.busy_places}" }
+      train.list_wagons do |wagon|
+        p "Number: #{wagon.number}, Model: #{wagon.model}," \
+           " Free seats: #{wagon.free_places}," \
+           " Busy: #{wagon.busy_places}"
+      end
     else
-      train.list_wagons { |wagon| p "Number: #{wagon.number}, Model: #{wagon.model}, Free space: #{wagon.free_space}, Loaded: #{wagon.loaded_space}" }
+      train.list_wagons do |wagon|
+        p "Number: #{wagon.number}, Model: #{wagon.model}," \
+          "Free space: #{wagon.free_space}," \
+         "Loaded: #{wagon.loaded_space}"
+      end
     end
   end
 
   def load_wagon
-    show_created_trains_no_index
-    p "Enter train's number to list wagons"
-    number = gets.chomp
-    train = find_train(number)
-    p 'Find your wagon in list, then enter NUMBER'
-    if train.is_a?(PassengerTrain)
-      train.list_wagons { |wagon| p "Number: #{wagon.number},  Free seats: #{wagon.free_places}, Busy: #{wagon.busy_places}" }
-    else
-      train.list_wagons { |wagon| p "Number: #{wagon.number},  Free space: #{wagon.free_space}, Loaded: #{wagon.loaded_space}" }
-    end
+    show_wagons_for_train
     w_number = gets.chomp.to_i
     wagon = train.find_wagon(w_number)
     wagon.is_a?(PassengerWagon) ? load_pass(wagon) : load_cargo(wagon)
@@ -283,22 +273,16 @@ class ControlPanel
 
   def populate_railroad
     params_tr = { number: '000-sd' }
-    params_tr2 = { number: 'FFF-ff' }
     params_st1 = { name: 'Voronezh' }
     params_st2 = { name: 'Moscow' }
     tr1 = PassengerTrain.new(params_tr)
-    tr2 = PassengerTrain.new(params_tr2)
     @trains << tr1
-    @trains << tr2
-    w1  = PassengerWagon.new(1, 5)
-    w2  = PassengerWagon.new(2, 3)
+    w1 = PassengerWagon.new(1, 5)
     tr1.add_wagons(w1)
     st1 = Station.new(params_st1)
     st2 = Station.new(params_st2)
-    @stations << st1
-    @stations << st2
-    rt = Route.new(st1, st2)
-    @routes << rt
+    @stations.push(st1, st2)
+    @routes.push(rt = Route.new(st1, st2))
     tr1.setup_route(rt)
   end
 
@@ -321,11 +305,15 @@ class ControlPanel
   end
 
   def show_created_routes
-    @routes.each.with_index(1) { |route, index| p "#{index} ---  #{route.stations.first.name} => #{route.stations.last.name}" }
+    @routes.each.with_index(1) do |route, index|
+      p "#{index} - #{route.stations.first.name} => #{route.stations.last.name}"
+    end
   end
 
   def show_created_stations
-    @stations.each.with_index(1) { |station, index| p "#{index} - #{station.name}" }
+    @stations.each.with_index(1) do |station, index|
+      p "#{index} - #{station.name}"
+    end
   end
 
   def show_free_wagons
@@ -359,7 +347,7 @@ class ControlPanel
     p 'Choose volume of cargo'
     volume = gets.chomp.to_i
     wagon.load_space(volume)
-    p "You have successfully uploaded in wagon number:#{wagon.number} || Volume : #{volume}  "
+    p "Uploaded in wagon number:#{wagon.number} || Volume : #{volume}"
   end
 
   def no_route

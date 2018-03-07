@@ -25,10 +25,15 @@ class Route
     end
   end
 
+  def modify?
+    return false if self.stations.count < 3
+    true
+  end
+
   protected
 
   def validate!
-    raise 'That is not a station' unless @stations.first.is_a?(Station) || @stations.last.is_a?(Station)
+    raise 'Not a station' unless @stations.first.is_a?(Station) || @stations.last.is_a?(Station)
     raise 'Not unique points' if @stations.first.similar_to?(@stations.last)
   end
 end

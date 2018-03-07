@@ -117,7 +117,7 @@ class Train
 
   # validate format with regular expr
   def validate_format(atr)
-    raise TypeError, 'Invalid FORMAT of identifical number(valid example 000-sd)' unless atr =~ VALID_NUMBER
+    raise TypeError, 'Invalid FORMAT' unless atr =~ VALID_NUMBER
   end
 
   def validate!

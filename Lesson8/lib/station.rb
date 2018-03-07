@@ -27,18 +27,6 @@ class Station
     @trains.each { |train| yield(train) }
   end
 
-  # Group by type
-  def trains_by_type(type)
-    counter = @trains.find_all { |train| train.type == type }
-    if counter.count > 0
-      p "В данный момент на станции #{@name} количество поездов с типом #{type} :  #{counter.count}"
-    elsif @trains.empty?
-      p 'На станции вообще нет поездов'
-    else
-      p 'На станции нет поездов с таким типом'
-    end
-  end
-
   # depart trains from current station(instance)
   def train_out(train)
     @trains.delete(train)

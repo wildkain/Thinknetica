@@ -26,16 +26,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="validation.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/modules/validation.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="accessors.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/modules/accessors.rb">
           <provider selected="true" editor-type-id="text-editor">
@@ -86,7 +76,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cargo_train.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cargo_train.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/cargo_train.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
@@ -111,6 +101,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="validation.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/modules/validation.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-198">
+              <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -144,9 +144,9 @@
         <option value="$PROJECT_DIR$/lib/passenger_train.rb" />
         <option value="$PROJECT_DIR$/lib/station.rb" />
         <option value="$PROJECT_DIR$/lib/route.rb" />
-        <option value="$PROJECT_DIR$/lib/modules/validation.rb" />
         <option value="$PROJECT_DIR$/lib/modules/accessors.rb" />
         <option value="$PROJECT_DIR$/lib/wagon.rb" />
+        <option value="$PROJECT_DIR$/lib/modules/validation.rb" />
       </list>
     </option>
   </component>
@@ -312,7 +312,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1520779341364</updated>
-      <workItem from="1520779342583" duration="27707000" />
+      <workItem from="1520779342583" duration="28846000" />
     </task>
     <servers />
   </component>
@@ -349,7 +349,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27707000" />
+    <option name="totallyTimeSpent" value="28846000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -514,18 +514,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/modules/validation.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/cargo_train.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="24" lean-forward="true" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/modules/validation.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-198">
+          <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
           <folding />
         </state>
       </provider>

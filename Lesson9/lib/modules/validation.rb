@@ -17,12 +17,12 @@ module Validation
     def validate!
       self.class.validations.each do |validation|
         send (validation[:type]).to_s, validation[:name], validation[:options]
-        true
       end
     end
 
     def valid?
       validate!
+      true
     rescue
       false
     end
@@ -30,11 +30,13 @@ module Validation
     private
 
     def presence(name, *_options)
-      raise ArgumentError, "Empty '#{name}' argument" if self.send(name.to_sym) == ""
+      attr = self.instance_variable_get("@#{name}")
+      raise ArgumentError, "Empty '#{name}' argument" if attr == ""
     end
 
     def type(name, type)
-      raise ArgumentError, "Type #{name} does not match" unless send(name.to_s).is_a?(type)
+      attr = self.instance_variable_get("@#{name}")
+      raise ArgumentError, "Type #{type} does not match" unless attr.instance_of?(type[0])
     end
 
     def formatt(name, formatt)

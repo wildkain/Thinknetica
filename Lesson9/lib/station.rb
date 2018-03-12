@@ -9,6 +9,7 @@ class Station
   @@stations = []
 
   validate :name, :presence
+  validate :name, :type, String
 
   def initialize(params)
     register_instance

@@ -43,6 +43,7 @@ class ControlPanel
       p "Enter '12' to show train's wagons"
       p "Enter '13' to POPULATE RAILROAD"
       p "Enter '14' to load wagon or buy ticket"
+      p "Enter '15' to edit stations"
       p "Enter '0 to go out"
       output_errors unless @errors.empty?
       @errors = []
@@ -60,7 +61,8 @@ class ControlPanel
         7 => method(:remove_wagon_from_train), 8 => method(:depart_train),
         9 => method(:list_stations), 10 => method(:show_trains_on_station),
         11 => method(:show_free_wagons), 12 => method(:show_wagons_for_train),
-        13 => method(:populate_railroad), 14 => method(:load_wagon) }
+        13 => method(:populate_railroad), 14 => method(:load_wagon),
+        15 => method(:edit_stations) }
     actions[answer].call if actions.key?(answer)
   end
 
@@ -78,6 +80,37 @@ class ControlPanel
       retry
     end
     p "Station '#{params[:name]}' was created" unless error
+  end
+
+  def edit_stations
+    return if @stations.empty?
+    p 'Select Station to edit'
+       show_created_stations
+    p "Please, enter station's number"
+    station = @stations[gets.chomp.to_i - 1]
+    p "Your choice - #{station.name}."
+    p "What you wonna do?"
+    p "Enter 1 to RENAME station"
+    p "Enter 2 to DELETE station"
+    input = gets.chomp.to_i
+    case input
+      when 1
+        rename_station(station)
+      when 2
+        @stations.delete(station)
+    end
+
+  end
+
+  def rename_station(station)
+    begin
+    p "Enter NEW name for Station"
+    p "OLD NAMES: #{station.name_history}" unless station.name_history.nil?
+    station.name = gets.chomp
+    rescue ArgumentError => error
+      p error.message.to_s
+      retry
+    end
   end
 
   def create_train
@@ -263,15 +296,12 @@ class ControlPanel
     params_tr = { number: '000-sd' }
     params_st1 = { name: 'Voronezh' }
     params_st2 = { name: 'Moscow' }
-    tr1 = PassengerTrain.new(params_tr)
-    @trains << tr1
-    w1 = PassengerWagon.new(1, 5)
-    tr1.add_wagons(w1)
     st1 = Station.new(params_st1)
     st2 = Station.new(params_st2)
+
+
     @stations.push(st1, st2)
-    @routes.push(rt = Route.new(st1, st2))
-    tr1.setup_route(rt)
+
   end
 
   private

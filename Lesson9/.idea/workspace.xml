@@ -10,37 +10,27 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Lesson9@Run_test__test_modules___Lesson9.coverage" NAME="Run test 'test_modules': Lesson9 Coverage Results" MODIFIED="1520789636062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Lesson9" />
-    <SUITE FILE_PATH="coverage/Lesson9@IRB_console__Lesson9.coverage" NAME="IRB console: Lesson9 Coverage Results" MODIFIED="1520787160297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Lesson9" />
-    <SUITE FILE_PATH="coverage/Lesson9@main.coverage" NAME="main Coverage Results" MODIFIED="1520788263899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Lesson9" />
+    <SUITE FILE_PATH="coverage/Lesson9@Run_test__test_modules___Lesson9.coverage" NAME="Run test 'test_modules': Lesson9 Coverage Results" MODIFIED="1520842956339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Lesson9" />
+    <SUITE FILE_PATH="coverage/Lesson9@IRB_console__Lesson9.coverage" NAME="IRB console: Lesson9 Coverage Results" MODIFIED="1520847190690" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Lesson9" />
+    <SUITE FILE_PATH="coverage/Lesson9@main.coverage" NAME="main Coverage Results" MODIFIED="1520847470402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="Lesson9" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="validation.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="station.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/station.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="275">
+              <caret line="17" column="13" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="validation.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/modules/validation.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-410">
-              <caret line="9" column="38" lean-forward="true" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="train.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/train.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="6" column="44" lean-forward="true" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_modules.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test_modules.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="108">
+              <caret line="21" column="7" lean-forward="true" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -49,48 +39,8 @@
       <file leaf-file-name="accessors.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/modules/accessors.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cargo_train.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/cargo_train.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="2" lean-forward="false" selection-start-line="2" selection-start-column="2" selection-end-line="3" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="passenger_train.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/passenger_train.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="28" lean-forward="true" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="station.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/station.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="route.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/route.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="19" lean-forward="false" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+            <state relative-caret-position="131">
+              <caret line="19" column="47" lean-forward="false" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -99,17 +49,67 @@
       <file leaf-file-name="wagon.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/wagon.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+            <state relative-caret-position="-13">
+              <caret line="1" column="22" lean-forward="true" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cargo_wagon.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/cargo_wagon.rb">
+      <file leaf-file-name="route.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/route.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-324">
+            <state relative-caret-position="167">
+              <caret line="35" column="6" lean-forward="false" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_modules.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_modules.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/train.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="14" column="1" lean-forward="false" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cargo_train.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/cargo_train.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="7" column="24" lean-forward="true" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="passenger_train.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/passenger_train.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="2" lean-forward="false" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="passenger_wagon.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/passenger_wagon.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -137,16 +137,16 @@
       <list>
         <option value="$PROJECT_DIR$/lib/modules/Accessors.rb" />
         <option value="$PROJECT_DIR$/lib/modules/validator.rb" />
-        <option value="$PROJECT_DIR$/lib/modules/validation.rb" />
-        <option value="$PROJECT_DIR$/control_panel.rb" />
-        <option value="$PROJECT_DIR$/lib/passenger_train.rb" />
-        <option value="$PROJECT_DIR$/lib/cargo_train.rb" />
-        <option value="$PROJECT_DIR$/lib/station.rb" />
         <option value="$PROJECT_DIR$/lib/route.rb" />
+        <option value="$PROJECT_DIR$/lib/station.rb" />
         <option value="$PROJECT_DIR$/lib/wagon.rb" />
-        <option value="$PROJECT_DIR$/lib/train.rb" />
         <option value="$PROJECT_DIR$/lib/modules/accessors.rb" />
         <option value="$PROJECT_DIR$/test_modules.rb" />
+        <option value="$PROJECT_DIR$/control_panel.rb" />
+        <option value="$PROJECT_DIR$/lib/train.rb" />
+        <option value="$PROJECT_DIR$/lib/cargo_train.rb" />
+        <option value="$PROJECT_DIR$/lib/passenger_train.rb" />
+        <option value="$PROJECT_DIR$/lib/modules/validation.rb" />
       </list>
     </option>
   </component>
@@ -292,9 +292,9 @@
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'test_modules': Lesson9" />
-        <item index="1" class="java.lang.String" itemvalue="Ruby.main" />
-        <item index="2" class="java.lang.String" itemvalue="IRB console.IRB console: Lesson9" />
+        <item index="0" class="java.lang.String" itemvalue="Ruby.main" />
+        <item index="1" class="java.lang.String" itemvalue="IRB console.IRB console: Lesson9" />
+        <item index="2" class="java.lang.String" itemvalue="Test::Unit/Shoulda/Minitest.Run test 'test_modules': Lesson9" />
       </list>
     </recent_temporary>
   </component>
@@ -312,44 +312,44 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1520779341364</updated>
-      <workItem from="1520779342583" duration="10015000" />
+      <workItem from="1520779342583" duration="21630000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.11 at 20h 24m 15s.xml">
+    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.12 at 10h 26m 35s.xml">
       <configuration name="Run test 'test_modules': Lesson9" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.11 at 20h 28m 21s.xml">
+    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.12 at 10h 27m 10s.xml">
       <configuration name="Run test 'test_modules': Lesson9" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.11 at 20h 28m 31s.xml">
+    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.12 at 10h 30m 41s.xml">
       <configuration name="Run test 'test_modules': Lesson9" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.11 at 20h 30m 34s.xml">
+    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.12 at 10h 32m 07s.xml">
       <configuration name="Run test 'test_modules': Lesson9" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.11 at 20h 30m 45s.xml">
+    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.12 at 11h 17m 47s.xml">
       <configuration name="Run test 'test_modules': Lesson9" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.11 at 20h 31m 49s.xml">
+    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.12 at 11h 18m 02s.xml">
       <configuration name="Run test 'test_modules': Lesson9" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.11 at 20h 32m 56s.xml">
+    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.12 at 11h 20m 26s.xml">
       <configuration name="Run test 'test_modules': Lesson9" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.11 at 20h 33m 32s.xml">
+    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.12 at 11h 21m 40s.xml">
       <configuration name="Run test 'test_modules': Lesson9" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.11 at 20h 33m 45s.xml">
+    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.12 at 11h 22m 04s.xml">
       <configuration name="Run test 'test_modules': Lesson9" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.11 at 20h 33m 56s.xml">
+    <history-entry file="Run_test_'test_modules'__Lesson9 - 2018.03.12 at 11h 22m 36s.xml">
       <configuration name="Run test 'test_modules': Lesson9" configurationId="TestUnitRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10015000" />
+    <option name="totallyTimeSpent" value="21630000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -361,7 +361,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.6389497" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5393873" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -426,90 +426,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/control_panel.rb">
+    <entry file="file://$PROJECT_DIR$/lib/cargo_wagon.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="43" lean-forward="true" selection-start-line="0" selection-start-column="43" selection-end-line="0" selection-end-column="43" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/control_panel.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="79" column="11" lean-forward="true" selection-start-line="79" selection-start-column="11" selection-end-line="79" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/passenger_train.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="28" lean-forward="true" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/cargo_wagon.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-324">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/cargo_train.rb">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
-          <caret line="2" column="2" lean-forward="false" selection-start-line="2" selection-start-column="2" selection-end-line="3" selection-end-column="49" />
+          <caret line="2" column="2" lean-forward="false" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/station.rb">
+    <entry file="file://$PROJECT_DIR$/lib/passenger_wagon.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/route.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="19" lean-forward="false" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/wagon.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/modules/validation.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-410">
-          <caret line="9" column="38" lean-forward="true" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/train.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="6" column="44" lean-forward="true" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
+        <state relative-caret-position="144">
+          <caret line="14" column="1" lean-forward="false" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/modules/accessors.rb">
+    <entry file="file://$PROJECT_DIR$/lib/cargo_train.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+        <state relative-caret-position="126">
+          <caret line="7" column="24" lean-forward="true" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test_modules.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="108">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/route.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="35" column="6" lean-forward="false" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/wagon.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-13">
+          <caret line="1" column="22" lean-forward="true" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/station.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="17" column="13" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/modules/accessors.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="19" column="47" lean-forward="false" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/modules/validation.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="21" column="7" lean-forward="true" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
           <folding />
         </state>
       </provider>

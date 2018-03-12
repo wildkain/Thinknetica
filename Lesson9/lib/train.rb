@@ -2,12 +2,13 @@ class Train
   include Validation
   include Manufacturer
   include InstanceCounter
-  include Accessors
+  extend Accessors
 
   VALID_NUMBER = /^[a-z\d]{3}-?[a-z\d]{2}$/i
 
-  attr_reader :number, :wagons, :type
+  attr_reader :wagons, :type
   attr_accessor :route
+  attr_accessors_with_history :number
   @@trains = {}
 
   validate :number, :presence

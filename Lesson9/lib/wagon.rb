@@ -1,9 +1,10 @@
 class Wagon
   include Manufacturer
   include Validation
-  include Accessors
+  extend Accessors
 
-  attr_accessor :number, :model
+  attr_accessors_with_history :number
+  attr_accessor :model
 
   validate :number, :presence
 

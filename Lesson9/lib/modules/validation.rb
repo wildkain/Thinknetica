@@ -10,7 +10,6 @@ module Validation
     def validate(name, type, *options)
       @validations ||= []
       @validations << { name: name, type: type, options: options }
-      @validations.inspect
     end
   end
 
@@ -18,8 +17,8 @@ module Validation
     def validate!
       self.class.validations.each do |validation|
         send (validation[:type]).to_s, validation[:name], validation[:options]
+        true
       end
-      true
     end
 
     def valid?
@@ -31,7 +30,7 @@ module Validation
     private
 
     def presence(name, *_options)
-      raise ArgumentError, "#{name} empty" if send(name.to_s).to_s.empty?
+      raise ArgumentError, "Empty '#{name}' argument" if self.send(name.to_sym) == ""
     end
 
     def type(name, type)

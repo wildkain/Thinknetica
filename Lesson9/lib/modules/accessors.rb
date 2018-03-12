@@ -19,7 +19,7 @@ module Accessors
     var_name = "@#{name}".to_sym
     define_method(name) { instance_variable_get(var_name) }
     define_method("#{name}=".to_sym) do |value|
-      raise 'Wrong class!' unless value.instance_of?(class_name)
+      raise "Wrong  class! Valid - #{class_name}" unless value.instance_of?(class_name)
       instance_variable_set(var_name, value)
     end
   end

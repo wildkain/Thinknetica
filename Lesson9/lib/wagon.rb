@@ -3,10 +3,11 @@ class Wagon
   include Validation
   extend Accessors
 
-  attr_accessors_with_history :number
+  strong_attr_accessor :number, Fixnum
   attr_accessor :model
 
   validate :number, :presence
+  validate :number, :type, Fixnum
 
   def initialize(number, model)
     @number = number

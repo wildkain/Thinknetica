@@ -2,7 +2,7 @@ class Route
   include InstanceCounter
   include Validation
   include Comparable
-  include Accessors
+  extend Accessors
 
   attr_accessor :stations
 

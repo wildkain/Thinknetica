@@ -16,7 +16,8 @@ module Validation
   module InstanceMethods
     def validate!
       self.class.validations.each do |validation|
-        send (validation[:type]).to_s, validation[:name], validation[:options]
+        value = self.instance_variable_get("@#{validation[:name]}")
+        send (validation[:type]).to_s, value, validation[:options]
       end
     end
 
@@ -30,17 +31,15 @@ module Validation
     private
 
     def presence(name, *_options)
-      attr = self.instance_variable_get("@#{name}")
-      raise ArgumentError, "Empty '#{name}' argument" if attr == ""
+      raise ArgumentError, "Empty '#{name}' argument" if name == ""
     end
 
     def type(name, type)
-      attr = self.instance_variable_get("@#{name}")
-      raise ArgumentError, "Type #{type} does not match" unless attr.instance_of?(type[0])
+      raise ArgumentError, "Type #{type} does not match" unless name.instance_of?(type[0])
     end
 
     def formatt(name, formatt)
-      raise ArgumentError, "#{name} not match #{formatt}" unless name =~ formatt
+      raise ArgumentError, "#{name} not match #{formatt}" unless name =~ formatt[0]
     end
   end
 end
